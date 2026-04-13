@@ -1,0 +1,39 @@
+{
+  "title": "Linux Guide",
+  "icon": "🐧",
+  "color": "#5a9e6e",
+  "chapters": [
+    {
+      "title": "What is Linux?",
+      "content": "Linux is a free, open-source operating system kernel created by Linus Torvalds in 1991. Unlike Windows or macOS, Linux is built on the philosophy that software should be free and modifiable by anyone.\n\nToday Linux powers everything from Android phones to supercomputers, web servers, and yes — Arch Linux desktops like this one 🌸"
+    },
+    {
+      "title": "The Filesystem",
+      "content": "Linux uses a single-root filesystem tree starting at /\n\n/          root of everything\n/home      your personal files (~)\n/etc       system config files\n/bin       essential programs\n/usr       user programs\n/var       logs, databases\n/tmp       temporary files\n/dev       hardware devices\n/proc      running processes\n/mnt       mounted drives\n\nEverything in Linux is a file — even hardware devices."
+    },
+    {
+      "title": "Essential Commands",
+      "content": "Navigation:\n  pwd          print current directory\n  ls           list files\n  ls -la       list with hidden files + details\n  cd folder    enter a directory\n  cd ..        go up one level\n  cd ~         go home\n\nFiles:\n  touch file   create empty file\n  mkdir dir    create directory\n  cp a b       copy a to b\n  mv a b       move or rename\n  rm file      delete file\n  rm -rf dir   delete directory (careful!)\n  cat file     print file contents\n  less file    scroll through file\n\nSearch:\n  grep 'text' file   find text in file\n  find . -name '*.txt'   find files by name\n  which program      find where a program is"
+    },
+    {
+      "title": "Permissions",
+      "content": "Every file has permissions for: owner, group, others\n\nExample:  -rwxr-xr--\n  - = file (d = directory)\n  rwx = owner can read, write, execute\n  r-x = group can read, execute\n  r-- = others can only read\n\nChanging permissions:\n  chmod 755 file     rwxr-xr-x\n  chmod 644 file     rw-r--r--\n  chmod +x file      add execute for all\n  chown user file    change owner\n\nCommon numbers:\n  7 = rwx   6 = rw-   5 = r-x   4 = r--"
+    },
+    {
+      "title": "Package Management",
+      "content": "Different distros use different package managers:\n\nArch Linux (pacman):\n  sudo pacman -S package      install\n  sudo pacman -R package      remove\n  sudo pacman -Syu            update everything\n  pacman -Ss keyword          search\n\nUbuntu/Debian (apt):\n  sudo apt install package\n  sudo apt remove package\n  sudo apt update && sudo apt upgrade\n\nFedora (dnf):\n  sudo dnf install package\n  sudo dnf remove package\n  sudo dnf upgrade\n\nAUR (Arch User Repository) — use yay:\n  yay -S package"
+    },
+    {
+      "title": "Processes & System",
+      "content": "Viewing processes:\n  top          live process monitor\n  htop         nicer version of top\n  ps aux       list all processes\n  pgrep name   find process by name\n\nControlling processes:\n  kill PID         send kill signal\n  kill -9 PID      force kill\n  pkill name       kill by name\n  Ctrl+C           interrupt running program\n  Ctrl+Z           pause program\n  bg               resume in background\n  fg               bring back to foreground\n  command &        run in background\n\nSystem info:\n  uname -a         kernel version\n  df -h            disk usage\n  free -h          memory usage\n  uptime           how long system running"
+    },
+    {
+      "title": "Shell Scripting",
+      "content": "A shell script is a file of commands run in sequence.\n\nCreate a script:\n  #!/bin/bash          <- shebang line, always first\n  echo 'Hello, world!'\n\nMake it executable:\n  chmod +x myscript.sh\n  ./myscript.sh\n\nVariables:\n  name='Alice'\n  echo \"Hello $name\"\n\nIf statement:\n  if [ $x -gt 5 ]; then\n    echo 'big'\n  else\n    echo 'small'\n  fi\n\nFor loop:\n  for i in 1 2 3; do\n    echo $i\n  done\n\nWhile loop:\n  while [ $n -lt 10 ]; do\n    n=$((n+1))\n  done"
+    },
+    {
+      "title": "Arch Linux Specifics",
+      "content": "Arch Linux is a rolling-release distro — instead of version upgrades, you get continuous updates.\n\nArch philosophy:\n  • Simplicity — no bloat, you build it yourself\n  • Minimalism — only what you need\n  • User-centrism — you are in control\n\nKey Arch tools:\n  pacman          package manager\n  yay / paru      AUR helpers\n  systemd         init system\n  pacstrap        install base system\n  arch-chroot     chroot into system\n\nUseful Arch commands:\n  systemctl start service      start a service\n  systemctl enable service     start on boot\n  systemctl status service     check status\n  journalctl -xe               view system logs\n  lsblk                        list drives\n  ip addr                      network info\n\nThe Arch Wiki is the best Linux documentation on the internet. When in doubt — wiki it."
+    }
+  ]
+}
