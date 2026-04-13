@@ -1,0 +1,39 @@
+{
+  "title": "Java Guide",
+  "icon": "☕",
+  "color": "#b06030",
+  "chapters": [
+    {
+      "title": "What is Java?",
+      "content": "Java is a high-level, object-oriented programming language designed by James Gosling at Sun Microsystems (now Oracle) in 1995.\n\nJava's famous motto: Write Once, Run Anywhere (WORA). Java code compiles to bytecode which runs on the Java Virtual Machine (JVM) — so the same code runs on Windows, Linux, macOS, or any device with a JVM.\n\nJava is used for:\n  • Android app development\n  • Enterprise backend systems\n  • Web servers and APIs\n  • Desktop applications\n  • Big data tools (Hadoop, Spark)"
+    },
+    {
+      "title": "Hello World",
+      "content": "Every Java program lives inside a class.\nThe entry point is always the main method:\n\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, world! 🌸\");\n    }\n}\n\nTo compile and run:\n  javac HelloWorld.java    <- compiles to HelloWorld.class\n  java HelloWorld          <- runs it\n\nKey things to notice:\n  • Class name MUST match the filename\n  • main method signature is always the same\n  • Statements end with semicolons\n  • Curly braces define blocks"
+    },
+    {
+      "title": "Data Types",
+      "content": "Primitive types (lowercase):\n  int      integer          int x = 42;\n  long     big integer      long n = 123456789L;\n  double   decimal          double pi = 3.14;\n  float    small decimal    float f = 3.14f;\n  boolean  true/false       boolean ok = true;\n  char     single char      char c = 'A';\n  byte     -128 to 127      byte b = 100;\n  short    small integer    short s = 1000;\n\nObject types (capitalized):\n  String   text             String s = \"hello\";\n  Integer  int wrapper      Integer x = 42;\n  Double   double wrapper\n  Boolean  boolean wrapper\n\nArrays:\n  int[] nums = {1, 2, 3, 4, 5};\n  String[] names = new String[10];\n  nums[0]   <- access first element"
+    },
+    {
+      "title": "OOP — Classes & Objects",
+      "content": "Java is object-oriented. Everything is a class.\n\nDefining a class:\npublic class Dog {\n    // fields (attributes)\n    String name;\n    int age;\n\n    // constructor\n    public Dog(String name, int age) {\n        this.name = name;\n        this.age  = age;\n    }\n\n    // method\n    public void bark() {\n        System.out.println(name + \" says: Woof!\");\n    }\n}\n\nUsing the class:\nDog myDog = new Dog(\"Luna\", 3);\nmyDog.bark();   // Luna says: Woof!\nSystem.out.println(myDog.name);   // Luna"
+    },
+    {
+      "title": "Inheritance & Interfaces",
+      "content": "Inheritance — a class can extend another:\npublic class Animal {\n    String name;\n    public void speak() { System.out.println(\"...\"); }\n}\n\npublic class Cat extends Animal {\n    @Override\n    public void speak() {\n        System.out.println(name + \" says: Meow!\");\n    }\n}\n\nInterfaces — define a contract:\npublic interface Drawable {\n    void draw();   // must be implemented\n}\n\npublic class Circle implements Drawable {\n    public void draw() {\n        System.out.println(\"Drawing a circle\");\n    }\n}\n\nKey OOP concepts:\n  Encapsulation  hide data with private + getters/setters\n  Inheritance    extend classes with extends\n  Polymorphism   same method, different behaviour\n  Abstraction    abstract classes and interfaces"
+    },
+    {
+      "title": "Collections",
+      "content": "Java's Collections Framework:\n\nArrayList — dynamic array:\n  ArrayList<String> list = new ArrayList<>();\n  list.add(\"apple\");\n  list.add(\"banana\");\n  list.get(0);          // apple\n  list.size();          // 2\n  list.remove(0);\n\nHashMap — key-value pairs:\n  HashMap<String, Integer> map = new HashMap<>();\n  map.put(\"alice\", 90);\n  map.put(\"bob\",   85);\n  map.get(\"alice\");     // 90\n  map.containsKey(\"bob\");   // true\n\nHashSet — unique values:\n  HashSet<String> set = new HashSet<>();\n  set.add(\"a\");\n  set.add(\"a\");   // ignored, already in set\n  set.size();     // 1\n\nIterate with for-each:\n  for (String item : list) {\n      System.out.println(item);\n  }"
+    },
+    {
+      "title": "Exception Handling",
+      "content": "Exceptions handle errors gracefully:\n\ntry {\n    int result = 10 / 0;   // ArithmeticException!\n    System.out.println(result);\n} catch (ArithmeticException e) {\n    System.out.println(\"Cannot divide by zero\");\n} finally {\n    System.out.println(\"This always runs\");\n}\n\nCommon exceptions:\n  NullPointerException      used null reference\n  ArrayIndexOutOfBounds     bad array index\n  NumberFormatException     bad string-to-number\n  IOException               file/network error\n  ClassCastException        invalid type cast\n\nThrowing your own:\n  public void setAge(int age) {\n      if (age < 0)\n          throw new IllegalArgumentException(\"Age cannot be negative\");\n      this.age = age;\n  }\n\nCustom exception:\n  public class PinkException extends Exception {\n      public PinkException(String msg) { super(msg); }\n  }"
+    },
+    {
+      "title": "Useful Tips",
+      "content": "String methods:\n  s.length()          length\n  s.toUpperCase()     ALL CAPS\n  s.toLowerCase()     all lower\n  s.trim()            remove whitespace\n  s.contains(\"x\")     check substring\n  s.replace(\"a\",\"b\")  replace chars\n  s.split(\",\")        split to array\n  s.charAt(0)         character at index\n\nMath class:\n  Math.max(a, b)\n  Math.min(a, b)\n  Math.abs(x)\n  Math.sqrt(x)\n  Math.pow(x, y)\n  Math.random()    // 0.0 to 1.0\n\nCasting:\n  int x = (int) 3.99;      // x = 3\n  double d = (double) 5;   // d = 5.0\n  String s = String.valueOf(42);\n  int n = Integer.parseInt(\"42\");\n\nPrint shortcuts:\n  System.out.println(x);    // print + newline\n  System.out.print(x);      // no newline\n  System.out.printf(\"Hi %s, you are %d\", name, age);"
+    }
+  ]
+}
