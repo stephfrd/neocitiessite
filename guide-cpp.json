@@ -1,0 +1,39 @@
+{
+  "title": "C++ Guide",
+  "icon": "⚙️",
+  "color": "#3a7ab0",
+  "chapters": [
+    {
+      "title": "What is C++?",
+      "content": "C++ is a powerful, high-performance programming language created by Bjarne Stroustrup in 1979 as an extension of C.\n\nC++ gives you direct control over memory, making it one of the fastest languages. It is used for:\n  • Game engines (Unreal Engine is C++)\n  • Operating systems and drivers\n  • Compilers and interpreters\n  • Embedded systems\n  • High-frequency trading\n  • Graphics engines and simulations\n\nC++ is compiled directly to machine code — no virtual machine needed. With great power comes great responsibility: you manage your own memory."
+    },
+    {
+      "title": "Hello World",
+      "content": "#include <iostream>   // include the I/O library\nusing namespace std;  // so we don't have to type std::\n\nint main() {\n    cout << \"Hello, world! 🌸\" << endl;\n    return 0;\n}\n\nTo compile and run:\n  g++ hello.cpp -o hello     <- compile\n  ./hello                     <- run\n\nBreaking it down:\n  #include    brings in a library\n  main()      entry point, returns int\n  cout <<     print to console\n  endl        newline + flush buffer\n  return 0    tells OS: success\n\nModern C++ (use -std=c++17 or c++20 flag):\n  g++ hello.cpp -o hello -std=c++17"
+    },
+    {
+      "title": "Variables & Types",
+      "content": "Fundamental types:\n  int       integer           int x = 42;\n  long      big integer       long n = 1000000L;\n  float     decimal           float f = 3.14f;\n  double    precise decimal   double pi = 3.14159;\n  bool      true/false        bool ok = true;\n  char      single character  char c = 'A';\n  string    text (with STL)   string s = \"hello\";\n\nauto — compiler deduces type:\n  auto x = 42;       // int\n  auto y = 3.14;     // double\n  auto s = \"hello\";  // const char*\n\nConst:\n  const int MAX = 100;   // cannot be changed\n\nType casting:\n  double d = 3.9;\n  int x = (int) d;       // x = 3, truncated\n  int x = static_cast<int>(d);  // modern way"
+    },
+    {
+      "title": "Pointers & References",
+      "content": "This is what makes C++ unique and powerful.\n\nPointers — store memory addresses:\n  int x = 42;\n  int* ptr = &x;    // ptr holds address of x\n  cout << ptr;      // prints the address\n  cout << *ptr;     // prints 42 (dereference)\n  *ptr = 99;        // changes x to 99!\n\nReferences — an alias for a variable:\n  int x = 42;\n  int& ref = x;     // ref IS x\n  ref = 99;         // x is now 99\n\nWhy pointers matter:\n  void addOne(int* n) {\n      (*n)++;       // modify the actual variable\n  }\n  int x = 5;\n  addOne(&x);       // x is now 6\n\nNullptr (modern, use instead of NULL):\n  int* ptr = nullptr;\n  if (ptr != nullptr) { ... }\n\nAvoid memory leaks:\n  int* arr = new int[10];   // allocate\n  delete[] arr;             // MUST free!"
+    },
+    {
+      "title": "Classes & OOP",
+      "content": "C++ classes are similar to Java but with more control:\n\nclass Dog {\nprivate:\n    string name;   // only accessible inside class\n    int age;\n\npublic:\n    // constructor\n    Dog(string n, int a) : name(n), age(a) {}\n\n    // destructor — runs when object is destroyed\n    ~Dog() { cout << name << \" goodbye\" << endl; }\n\n    void bark() {\n        cout << name << \" says: Woof!\" << endl;\n    }\n\n    string getName() { return name; }  // getter\n};\n\nUsing it:\n  Dog d(\"Luna\", 3);      // on the stack (auto-deleted)\n  d.bark();\n\n  Dog* dp = new Dog(\"Mochi\", 2);  // on the heap\n  dp->bark();            // -> dereferences pointer\n  delete dp;             // MUST delete!\n\nInheritance:\n  class Puppy : public Dog {\n  public:\n      Puppy(string n) : Dog(n, 0) {}\n  };"
+    },
+    {
+      "title": "STL — Standard Library",
+      "content": "The STL gives you powerful containers and algorithms.\n\nvector — dynamic array:\n  #include <vector>\n  vector<int> v = {1, 2, 3};\n  v.push_back(4);\n  v[0];              // 1\n  v.size();          // 4\n  v.pop_back();      // removes last\n\nmap — key-value pairs (sorted):\n  #include <map>\n  map<string, int> scores;\n  scores[\"alice\"] = 90;\n  scores[\"bob\"]   = 85;\n  scores[\"alice\"]; // 90\n\nset — unique sorted values:\n  #include <set>\n  set<int> s = {3, 1, 2, 1};\n  // contains: 1 2 3 (sorted, no duplicates)\n\nalgorithms:\n  #include <algorithm>\n  sort(v.begin(), v.end());\n  reverse(v.begin(), v.end());\n  auto it = find(v.begin(), v.end(), 3);\n\nRange-based for loop:\n  for (auto& item : v) {\n      cout << item << endl;\n  }"
+    },
+    {
+      "title": "Memory Management",
+      "content": "C++ gives you direct control over memory.\n\nStack memory (automatic):\n  int x = 42;          // auto-freed when scope ends\n  { int y = 5; }       // y is gone after }\n\nHeap memory (manual):\n  int* p = new int(42);    // allocate\n  delete p;                // free — REQUIRED\n\n  int* arr = new int[10];  // allocate array\n  delete[] arr;            // free array\n\nMemory leaks happen when you forget to delete.\nUse smart pointers to avoid this (modern C++):\n\n  #include <memory>\n  unique_ptr<int> p = make_unique<int>(42);\n  // auto-deleted when p goes out of scope!\n\n  shared_ptr<Dog> d = make_shared<Dog>(\"Luna\", 3);\n  // deleted when last shared_ptr to it is gone\n\nRules:\n  • Every new needs a delete\n  • Every new[] needs a delete[]\n  • Prefer smart pointers in modern C++\n  • Never delete the same pointer twice"
+    },
+    {
+      "title": "Modern C++ Tips",
+      "content": "C++11 and beyond added many quality-of-life features:\n\nauto type deduction:\n  auto x = 42;          // don't repeat yourself\n  auto it = v.begin();\n\nRange-based for:\n  for (const auto& s : strings) { ... }\n\nLambdas — anonymous functions:\n  auto add = [](int a, int b) { return a + b; };\n  cout << add(3, 4);   // 7\n\n  sort(v.begin(), v.end(), [](int a, int b) {\n      return a > b;    // sort descending\n  });\n\nStructured bindings (C++17):\n  auto [key, val] = *map.begin();\n\nString literals:\n  string s = \"Hello\"s;      // std::string directly\n  auto raw = R\"(raw \\n string)\";\n\nNullptr:\n  int* p = nullptr;   // always use this, not NULL\n\nCompile with:\n  g++ file.cpp -o out -std=c++17 -Wall -O2"
+    }
+  ]
+}
