@@ -1,0 +1,58 @@
+:root {
+    --tape-peach: rgba(242, 207, 182, 0.6);
+    --tape-mint: rgba(180, 231, 184, 0.6);
+    --tape-sage: rgba(185, 207, 167, 0.6);
+    --tape-lavender: rgba(237, 208, 253, 0.6);
+    --tape-yellow: rgba(208, 211, 146, 0.6);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image:url('https://i.pinimg.com/736x/f2/13/57/f21357a1653bdf955424881d93d69023.jpg');
+    background-size: cover;
+    background-attachment:fixed;
+    background-position:center;
+    overflow: auto; 
+}
+
+/* Make the canvas huge so you can scroll forever */
+.canvas {
+    position: relative;
+    width: 5000px;  /* Huge width */
+    height: 5000px; /* Huge height */
+    cursor: grab;
+}
+
+.photo-scrap {
+    position: absolute;
+    background: white;
+    padding: 10px 10px 25px 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.photo-scrap:hover {
+    z-index: 9999 !important; /* Brings hovered photo to top */
+    transform: scale(1.1) rotate(0deg) !important;
+}
+
+.photo-scrap img {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    display: block;
+    pointer-events: none;
+}
+
+/* The Tape Piece */
+.tape {
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    backdrop-filter: blur(1px);
+    z-index: 2;
+}
