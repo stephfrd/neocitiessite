@@ -1,0 +1,170 @@
+:root {
+    --peach: #f2cfb6;
+    --mint: #b4e7b8;
+    --sage: #b9cfa7;
+    --lavender: #edd0fd;
+    --yellow: #d0d392;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fffaf5; /* Creamy vintage base */
+    font-family: 'Times New Roman', serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-y: auto;   /* Allow vertical scroll for rows */
+}
+
+/* Film Grain Effect */
+.grain-filter {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.boutique-stage {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.boutique-header {
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--sage);
+    letter-spacing: 12px;
+    text-transform: uppercase;
+}
+
+/* The Rack - Configured for 8 items per row */
+.closet-row {
+    display: flex;
+    flex-wrap: wrap;       /* Allows items to jump to next row */
+    justify-content: center;
+    gap: 20px;             /* Space between garments */
+    padding: 0 40px;
+    max-width: 1400px;     /* Prevents the rack from getting too wide on ultrawide monitors */
+    margin: 0 auto;
+}
+
+.closet-item {
+    position: relative;    /* Critical for the Polaroid popup */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(12.5% - 20px); /* 100% / 8 items = 12.5% */
+    min-width: 80px;
+    margin-bottom: 80px;   /* Vertical spacing between rows */
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+/* The Hanger & "Dress" Column */
+.garment-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hanger {
+    width: 40px;
+    height: 15px;
+    border: 1.5px solid #ccc;
+    border-radius: 50px 50px 0 0;
+    margin-bottom: 5px;
+}
+
+.dress-shape {
+    width: 60px;
+    height: 280px; /* Slightly shorter to fit rows better */
+    border-radius: 5px;
+    opacity: 0.8;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+/* The Polaroid Content - Now positioned as an overlay */
+.item-details {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 50;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.polaroid {
+    background: white;
+    padding: 12px 12px 35px 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform: rotate(-2deg);
+    border: 1px solid #f0f0f0;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    filter: sepia(0.2) contrast(0.9); 
+}
+
+.pinterest-btn {
+    margin-top: 15px;
+    display: inline-block;
+    color: var(--sage);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    border: 1px solid var(--sage);
+    padding: 8px 15px;
+    transition: 0.3s;
+    background: white;
+}
+
+.pinterest-btn:hover {
+    background: var(--sage);
+    color: white;
+}
+
+/* Reveal Logic */
+/* When active, the polaroid pops up in front of the rack */
+.closet-item.active {
+    z-index: 100;
+}
+
+.closet-item.active .item-details {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+    pointer-events: auto;
+}
+
+.closet-item.active .dress-shape {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Responsive adjustment for tablets */
+@media (max-width: 1024px) {
+    .closet-item {
+        width: calc(25% - 20px); /* 4 per row on tablets */
+    }
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 600px) {
+    .closet-item {
+        width: calc(50% - 20px); /* 2 per row on phones */
+    }
+}
