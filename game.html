@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Story Title</title>
+    <style>
+    body {
+  font-family: "Cantarell", Verdana, sans-serif;
+  font-size: 0.95em;
+  background: #353842;
+  }
+  
+a {
+  color: #dedee0;
+  }
+  
+tt {
+  font-size: 1.05em; /* since it's pretty small by default */
+  }
+
+/*No style, used to keep footer et al contained.*/
+.main-container {
+  }
+
+/*Pages go in here.*/
+.story-container {
+  width: 480px;
+  height: 680px;
+  border: 1px solid #000;
+  margin: 0 auto;
+  margin-top:20px;
+  overflow: hidden;
+  }
+
+/*Individual pages of the story.*/
+.page {
+  width: 480px;
+  height: 680px;
+  overflow: auto;
+  position:relative;
+  }
+  
+.page-content {
+  padding: 25px 15px 15px 15px;
+  /*Extra padding at top is for the page number - remove if unused.*/
+  }
+  
+.page-number {
+  position: absolute;
+  float: right;
+  right:0;
+  padding: 15px;
+  }
+  
+/*To keep choices always at the bottom of the page.*/
+.stick-to-bottom {
+  position:absolute;
+  bottom:0;
+  width: 480px;
+  }
+  
+/*Optional footer buttons.*/
+.footer {
+  width: 480px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  }
+  
+.left {
+  float: left;
+  padding-left:2px;
+  }
+  
+.right {
+  float: right;
+  right: 0;
+  padding-right:2px;
+  }
+  
+  
+/*Standard page styling base.*/
+
+.page {
+  background: #eee url(/creations/conlangs/006-Paper-Kraft.jpg); /*REPLACE WITH YOUR OWN - DO NOT HOTLINK*/
+  color: #000;
+  }
+  
+.page a {
+  color: #006653;
+  }
+  
+.page a:focus, .page a:hover {
+  color: #00977b;
+  }
+  
+.page a:focus {
+  outline: 1px solid #006653;
+  }
+
+  
+/*Special styling for the example game.*/
+
+.ancient {
+  background: url(/creations/conlangs/006-Paper-Kraft_alt.jpg); /*REPLACE WITH YOUR OWN - DO NOT HOTLINK*/
+  box-shadow: inset 0 0 25px 0px rgba(15,5,0,0.9);
+  font-family: "Symbola", Symbola, Goudy Stout, Palatino, serif;
+  font-weight:bold;
+  color: #000;
+  }
+  
+.ancient hr {
+  height:2px;
+  border:0;
+  margin-left:0;
+  margin-right:0;
+  background: linear-gradient(to left, rgb(0,0,0,0), #421810 ,rgb(0,0,0,0));
+  }
+  
+.ancient a {
+  color: #3d120a;
+  }
+  
+.ancient a:focus, .ancient a:hover {
+  color: #661608;
+  }
+  
+.ancient a:focus {
+  outline: #421810 1px solid;
+  }
+  
+.ancient .page-number {
+  padding: 20px 20px 10px 10px;
+  }
+  
+.ancient .page-content {
+  padding: 40px;
+  }
+  
+.ancient .stick-to-bottom {
+  padding-bottom: 40px;
+  padding-right: 40px;
+  width: 400px;
+  }
+  
+.byline {
+  font-size: 0.9em;
+  font-style:italic;
+  }
+
+
+/*Support for mobile and narrow screens*/
+@media(max-width: 480px) {
+  .story-container, .footer, .page, .ancient .page {
+    margin:0;
+    padding:0;
+    width: 100%;
+    }
+  .ancient .stick-to-bottom {
+    margin:0;
+    padding:0;
+    width: 85%;
+    position: static;
+    }
+  .ancient .stick-to-bottom {
+    padding-bottom: 5%;
+    margin: 0 auto;
+    }
+  }
+    </style>
+  </head>
+  <body>
+
+  <div class="main-container">
+    <div class="story-container">
+  
+      <div class="page" id="start">
+        <div class="page-number">1</div>
+        <div class="page-content">
+          <h3>Your Story Title</h3>
+          <p>(credits for the design to https://eggramen.neocities.org)</p>
+          
+          <div class="stick-to-bottom">
+            <p>Do you <a href="#page2">Go to Page 2</a>?</p>
+            <p>Or <a href="#page3">Go to Page 3</a>?</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="page" id="page2">
+        <div class="page-number">2</div>
+        <div class="page-content">
+          <h3>The Second Path</h3>
+          <p>You chose the first option!</p>
+          
+          <div class="stick-to-bottom">
+            <p><a href="#start">Return to the beginning.</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page3">
+        <div class="page-number">3</div>
+        <div class="page-content">
+          <h3>The Third Path</h3>
+          <p>This is a different branch of your story.</p>
+          
+          <div class="stick-to-bottom">
+            <p><a href="#start">Back to start.</a></p>
+          </div>
+        </div>
+      </div>
+
+      </div> </div> </body>
+</html>
