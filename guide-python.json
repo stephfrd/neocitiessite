@@ -1,0 +1,39 @@
+{
+  "title": "Python Guide",
+  "icon": "🐍",
+  "color": "#5a7ab0",
+  "chapters": [
+    {
+      "title": "What is Python?",
+      "content": "Python is a high-level, interpreted programming language created by Guido van Rossum in 1991. It is famous for its readable, clean syntax — Python code often looks like plain English.\n\nPython is used for:\n  • Data science and machine learning (NumPy, Pandas, PyTorch)\n  • Web development (Django, Flask, FastAPI)\n  • Automation and scripting\n  • Scientific computing\n  • AI and natural language processing\n  • Game development (Pygame)\n\nPython is interpreted — no compilation step. Just run:\n  python3 hello.py\n\nPython enforces indentation — code blocks are defined by spaces, not curly braces."
+    },
+    {
+      "title": "Hello World & Basics",
+      "content": "print(\"Hello, world! 🌸\")\n\nThat's it. No class, no main function, no semicolons.\n\nVariables — no type declaration needed:\n  name = \"Alice\"\n  age  = 21\n  pi   = 3.14159\n  cool = True\n\nPython figures out the type automatically.\n\nComments:\n  # single line comment\n\n  \"\"\"\n  multi-line comment\n  or docstring\n  \"\"\"\n\nPrint with formatting:\n  print(f\"Hello {name}, you are {age}!\")   # f-string\n  print(\"Hi\", name, \"you are\", age)         # comma-separated\n  print(\"Value: %d\" % 42)                   # old style\n\nInput from user:\n  name = input(\"What is your name? \")\n  print(f\"Hello {name}!\")"
+    },
+    {
+      "title": "Data Types",
+      "content": "Python's built-in types:\n\nNumbers:\n  x = 42          # int\n  y = 3.14        # float\n  z = 2 + 3j      # complex\n  big = 10**100   # Python ints have no size limit!\n\nStrings:\n  s = \"hello\"\n  s = 'hello'         # same thing\n  s = \"\"\"multi\n  line\"\"\"             # multi-line\n  len(s)              # length\n  s.upper()           # HELLO\n  s[0]                # h\n  s[-1]               # last char: o\n  s[1:3]              # slice: el\n  s * 3               # hellohellohello\n\nBooleans:\n  True  False   (capital T and F!)\n  not True == False\n  True and False == False\n  True or False == True\n\nNone:\n  x = None    # like null in other languages"
+    },
+    {
+      "title": "Lists, Tuples, Dicts, Sets",
+      "content": "List — ordered, mutable:\n  nums = [1, 2, 3, 4, 5]\n  nums.append(6)       # add to end\n  nums.pop()           # remove last\n  nums[0]              # first: 1\n  nums[-1]             # last: 6\n  nums[1:3]            # slice: [2, 3]\n  len(nums)            # 5\n\nTuple — ordered, IMMUTABLE:\n  point = (10, 20)\n  x, y = point         # unpacking\n\nDictionary — key-value:\n  person = {\"name\": \"Alice\", \"age\": 21}\n  person[\"name\"]       # Alice\n  person[\"city\"] = \"Tokyo\"    # add key\n  person.keys()        # dict_keys\n  person.values()      # dict_values\n  person.items()       # dict_items\n  \"name\" in person     # True\n\nSet — unique unordered:\n  s = {1, 2, 3, 2, 1}  # {1, 2, 3}\n  s.add(4)\n  s.union({5, 6})\n  s.intersection({2, 3, 7})   # {2, 3}\n\nList comprehension (very Pythonic):\n  squares = [x**2 for x in range(10)]\n  evens   = [x for x in nums if x % 2 == 0]"
+    },
+    {
+      "title": "Control Flow",
+      "content": "If / elif / else:\n  if age >= 18:\n      print(\"adult\")\n  elif age >= 13:\n      print(\"teen\")\n  else:\n      print(\"child\")\n\nNote: NO parentheses needed, colon at end, indent the body.\n\nFor loop:\n  for i in range(5):          # 0 1 2 3 4\n      print(i)\n\n  for item in [\"a\",\"b\",\"c\"]:\n      print(item)\n\n  for i, item in enumerate(lst):  # get index too\n      print(i, item)\n\n  for k, v in dict.items():\n      print(k, v)\n\nWhile loop:\n  n = 0\n  while n < 10:\n      n += 1\n\nBreak and continue:\n  for i in range(100):\n      if i == 5: break     # stop loop\n      if i % 2: continue   # skip odd\n\nOne-line if (ternary):\n  label = \"yes\" if x > 0 else \"no\""
+    },
+    {
+      "title": "Functions",
+      "content": "Defining a function:\n  def greet(name):\n      return f\"Hello, {name}! 🌸\"\n\n  print(greet(\"Alice\"))\n\nDefault arguments:\n  def power(base, exp=2):\n      return base ** exp\n\n  power(3)      # 9   (uses default exp=2)\n  power(3, 3)   # 27\n\nKeyword arguments:\n  def connect(host, port=80, secure=False):\n      ...\n\n  connect(\"localhost\", secure=True, port=443)\n\nArgs and kwargs:\n  def add(*args):          # any number of args\n      return sum(args)\n  add(1, 2, 3, 4)   # 10\n\n  def show(**kwargs):      # any keyword args\n      for k, v in kwargs.items():\n          print(k, v)\n  show(name=\"Alice\", age=21)\n\nLambda (anonymous function):\n  square = lambda x: x**2\n  sorted(names, key=lambda s: s.lower())"
+    },
+    {
+      "title": "Classes & OOP",
+      "content": "class Dog:\n    # class variable (shared by all instances)\n    species = \"Canis familiaris\"\n\n    def __init__(self, name, age):   # constructor\n        self.name = name             # instance variable\n        self.age  = age\n\n    def __str__(self):               # string representation\n        return f\"Dog({self.name}, {self.age})\"\n\n    def bark(self):\n        print(f\"{self.name} says: Woof!\")\n\nd = Dog(\"Luna\", 3)\nd.bark()          # Luna says: Woof!\nprint(str(d))     # Dog(Luna, 3)\n\nInheritance:\n  class Puppy(Dog):\n      def __init__(self, name):\n          super().__init__(name, 0)\n\n      def bark(self):\n          print(f\"{self.name} says: Yip!\")\n\nSpecial (dunder) methods:\n  __init__    constructor\n  __str__     str(obj)\n  __len__     len(obj)\n  __eq__      obj == other\n  __add__     obj + other"
+    },
+    {
+      "title": "Useful Libraries",
+      "content": "Python's standard library:\n\nos — file system:\n  import os\n  os.getcwd()              # current directory\n  os.listdir('.')          # list files\n  os.path.exists('file')   # check if file exists\n  os.makedirs('dir')       # create directory\n\nsys — system info:\n  import sys\n  sys.argv      # command line arguments\n  sys.exit(0)   # exit program\n\njson — data format:\n  import json\n  data = json.loads('{\"x\": 1}')     # parse string\n  json.dumps({\"x\": 1})              # to string\n  json.load(open('file.json'))      # from file\n\ndatetime:\n  from datetime import datetime\n  now = datetime.now()\n  print(now.strftime(\"%Y-%m-%d %H:%M\"))\n\nrandom:\n  import random\n  random.randint(1, 10)      # random int\n  random.choice([1,2,3])     # random item\n  random.shuffle(lst)         # shuffle in place\n\nPip — install packages:\n  pip install requests\n  pip install numpy pandas matplotlib"
+    }
+  ]
+}
