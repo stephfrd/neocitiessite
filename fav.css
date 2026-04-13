@@ -1,0 +1,109 @@
+:root {
+    --peach: #f2cfb6;
+    --mint: #b4e7b8;
+    --sage: #b9cfa7;
+    --lavender: #edd0fd;
+    --yellow: #d0d392;
+    --deep-wood: #2b1f15;
+}
+
+body {
+    margin: 0;
+    background: url('rainbow.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+}
+
+.sketchbook-deck {
+    width: 850px;
+    min-height: 100vh;
+    background: rgba(10, 15, 10, 0.85); /* Darker "forest" glass */
+    border-left: 4px solid var(--peach);
+    border-right: 4px solid var(--mint);
+    padding: 60px 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.palette-title {
+    color: var(--lavender);
+    text-align: center;
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+.color-divider {
+    height: 4px;
+    width: 100px;
+    margin: 20px auto 50px;
+    background: linear-gradient(90deg, var(--peach), var(--yellow));
+}
+
+.artist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 240px);
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Flip Card Logic */
+.artist-card {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.artist-card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Front - Each gets a thick border from your palette */
+.card-front {
+    background: #1a1a1a;
+    border: 3px solid var(--sage);
+}
+
+.card-front img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-front h3 {
+    margin-top: 20px;
+    color: var(--peach);
+    font-size: 1rem;
+}
+
+/* Back - Solid palette color with dark text */
+.card-back {
+    transform: rotateY(180deg);
+    justify-content: center;
+    text-align: center;
+    color: var(--deep-wood);
+    font-weight: bold;
+    padding: 20px;
+}
