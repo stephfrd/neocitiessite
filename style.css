@@ -1,0 +1,430 @@
+/* ============================================================
+   style.css — constellation homepage
+   ============================================================ */
+
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --deep:          #03000d;
+  --void:          #060015;
+  --mist:          #1a0a2e;
+  --purple-dark:   #2a1050;
+  --purple-mid:    #5a2a8a;
+  --purple-bright: #9a50e0;
+  --purple-glow:   #c890ff;
+  --blue-deep:     #080830;
+  --blue-mid:      #1a1860;
+  --blue-glow:     #6070ff;
+  --text-dim:      #6a4a8a;
+  --text-mid:      #a070c8;
+  --text-bright:   #d8b8f8;
+  --text-glow:     #eed8ff;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: var(--deep);
+  overflow-x: hidden;
+}
+
+/* ── CUSTOM CURSOR ────────────────────────────────────────── */
+body { cursor: none; }
+
+#cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--purple-glow);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 8px var(--purple-glow),
+    0 0 20px var(--purple-mid);
+  transition:
+    width  0.15s ease,
+    height 0.15s ease,
+    background 0.15s ease;
+}
+
+#cursor.hover {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid var(--purple-glow);
+  box-shadow: 0 0 14px var(--purple-glow);
+}
+
+#cursor.click {
+  transform: translate(-50%, -50%) scale(0.7);
+  background: white;
+}
+
+/* ── SKY SECTION ──────────────────────────────────────────── */
+#sky {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+
+  /* layered radial gradients for depth */
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, #150830 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, #0a103a 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #0d0520 0%, var(--deep) 100%);
+}
+
+/* the two canvases sit behind everything */
+#bg, #main {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── NEBULA BLOBS (pure CSS atmosphere) ───────────────────── */
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(70px);
+  animation: nebula-drift 18s ease-in-out infinite alternate;
+}
+
+.nebula-1 {
+  width: 520px;
+  height: 320px;
+  top: -90px;
+  left: -110px;
+  background: radial-gradient(ellipse, rgba(60,20,120,0.20) 0%, transparent 70%);
+  animation-duration: 20s;
+}
+
+.nebula-2 {
+  width: 420px;
+  height: 420px;
+  bottom: -110px;
+  right: -70px;
+  background: radial-gradient(ellipse, rgba(20,20,100,0.16) 0%, transparent 70%);
+  animation-duration: 16s;
+  animation-direction: alternate-reverse;
+}
+
+.nebula-3 {
+  width: 320px;
+  height: 220px;
+  top: 38%;
+  left: 38%;
+  background: radial-gradient(ellipse, rgba(90,10,90,0.12) 0%, transparent 70%);
+  animation-duration: 24s;
+}
+
+@keyframes nebula-drift {
+  from { transform: translate(0, 0) scale(1);     opacity: 0.7; }
+  to   { transform: translate(18px, 14px) scale(1.06); opacity: 1;   }
+}
+
+/* ── SITE HEADER ──────────────────────────────────────────── */
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 30px 20px 0;
+  pointer-events: none;
+  z-index: 5;
+
+  animation: fade-down 1.4s ease both;
+}
+
+#header h1 {
+  font-family: 'Cinzel', 'Palatino Linotype', serif;
+  font-size: clamp(12px, 2vw, 17px);
+  font-weight: 400;
+  letter-spacing: 0.45em;
+  color: var(--text-mid);
+  text-transform: uppercase;
+}
+
+#header .subtitle {
+  font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(10px, 1.4vw, 13px);
+  color: var(--text-dim);
+  letter-spacing: 0.18em;
+  margin-top: 7px;
+}
+
+/* ── BIG CENTRE TITLE (Comic Sans, white, italic) ─────────── */
+#sky-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  font-style: italic;
+  font-size: clamp(22px, 4.5vw, 46px);
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+
+  /* subtle glow so it reads against the dark sky */
+  text-shadow:
+    0 0 18px rgba(200, 160, 255, 0.55),
+    0 0 50px rgba(140,  80, 220, 0.30);
+
+  animation: title-breathe 6s ease-in-out infinite;
+}
+
+@keyframes title-breathe {
+  0%, 100% {
+    opacity: 0.82;
+    text-shadow:
+      0 0 18px rgba(200,160,255,0.50),
+      0 0 50px rgba(140,80,220,0.25);
+  }
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 26px rgba(220,170,255,0.80),
+      0 0 70px rgba(160,90,255,0.45);
+  }
+}
+
+/* ── HINT TEXT ────────────────────────────────────────────── */
+#hint {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+#hint span {
+  font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--text-dim);
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.30; }
+  50%       { opacity: 0.80; }
+}
+
+/* ── POP-UP PANEL ─────────────────────────────────────────── */
+#panel {
+  display: none; /* toggled by JS */
+  position: absolute;
+  z-index: 20;
+  width: 218px;
+
+  background:
+    linear-gradient(145deg, rgba(18,4,42,0.97) 0%, rgba(8,4,30,0.97) 100%);
+  border: 1px solid rgba(120,60,200,0.45);
+  border-radius: 3px;
+  padding: 20px 20px 16px;
+
+  box-shadow:
+    0 0 0 1px rgba(160,80,240,0.10),
+    0 12px 50px rgba(0,0,0,0.75),
+    inset 0 1px 0 rgba(180,120,255,0.08);
+
+  /* fade-in handled via .visible class */
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity  0.22s ease,
+    transform 0.22s ease;
+}
+
+#panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* top accent line */
+#panel::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(160,80,255,0.65),
+    transparent
+  );
+}
+
+/* close button */
+#panel-close {
+  position: absolute;
+  top: 9px;
+  right: 13px;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  color: var(--text-dim);
+  cursor: none;
+  line-height: 1;
+  transition: color 0.18s ease;
+  user-select: none;
+}
+#panel-close:hover { color: var(--purple-glow); }
+
+/* panel header row (symbol + name) */
+#panel-name {
+  font-family: 'Cinzel', 'Palatino Linotype', serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  color: var(--text-mid);
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+
+#panel-name .symbol {
+  color: var(--purple-glow);
+  margin-right: 7px;
+  font-size: 13px;
+}
+
+/* list of links inside the panel */
+#panel-links {
+  list-style: none;
+}
+
+#panel-links li {
+  border-bottom: 1px solid rgba(80,30,130,0.30);
+}
+
+#panel-links li:last-child {
+  border-bottom: none;
+}
+
+#panel-links li a {
+  display: block;
+  padding: 7px 4px;
+  font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  font-size: 13.5px;
+  letter-spacing: 0.07em;
+  color: var(--text-bright);
+  text-decoration: none;
+  cursor: none;
+  transition:
+    color        0.18s ease,
+    padding-left 0.18s ease;
+}
+
+#panel-links li a::before {
+  content: '✦ ';
+  font-size: 8px;
+  opacity: 0.38;
+  vertical-align: middle;
+}
+
+#panel-links li a:hover {
+  color: var(--text-glow);
+  padding-left: 10px;
+}
+
+/* "enter section" footer link */
+#panel-goto {
+  display: block;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(80,30,130,0.28);
+  font-family: 'Cinzel', 'Palatino Linotype', serif;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: none;
+  transition: color 0.18s ease;
+}
+#panel-goto:hover { color: var(--purple-glow); }
+
+/* ── PAGE FOOTER ──────────────────────────────────────────── */
+#footer {
+  background: var(--deep);
+  padding: 38px 20px 30px;
+  text-align: center;
+  border-top: 1px solid rgba(80,30,130,0.20);
+}
+
+#footer .divider {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: rgba(90,42,138,0.45);
+  font-size: 9px;
+  letter-spacing: 0.4em;
+}
+
+#footer .divider::before,
+#footer .divider::after {
+  content: '';
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(90,42,138,0.40));
+}
+#footer .divider::after { transform: scaleX(-1); }
+
+#footer p {
+  font-family: 'IM Fell English', 'Palatino Linotype', Georgia, serif;
+  font-style: italic;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+}
+
+/* ── ANIMATIONS ───────────────────────────────────────────── */
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+/* star burst on constellation click — applied via JS */
+@keyframes star-burst {
+  0%   { transform: translate(-50%,-50%) scale(1);   opacity: 1;   }
+  60%  { transform: translate(-50%,-50%) scale(2.2); opacity: 0.5; }
+  100% { transform: translate(-50%,-50%) scale(3);   opacity: 0;   }
+}
+
+.star-burst {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,140,255,0.7);
+  pointer-events: none;
+  z-index: 15;
+  animation: star-burst 0.55s ease-out forwards;
+}
+
+/* ── SCROLLBAR (for browsers that support it) ─────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--deep); }
+::-webkit-scrollbar-thumb  { background: var(--purple-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--purple-mid); }
