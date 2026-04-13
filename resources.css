@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    /* Use a mountain/forest photo here */
+    background: url('desktop.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Georgia', serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.forest-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(20, 30, 10, 0.4); /* Greenish tint */
+    pointer-events: none;
+}
+
+.journal-container {
+    width: 90%;
+    max-width: 1000px;
+    background: #e6dcc8; /* Aged Paper Color */
+    margin: 50px 0;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 20px 20px 0px #2b1f15;
+    border: 2px solid #2b1f15;
+    position: relative;
+    z-index: 2;
+}
+
+.journal-header {
+    text-align: center;
+    border-bottom: 2px double #2b1f15;
+    margin-bottom: 30px;
+    color: #9b001b; /* Deep Red */
+}
+
+.category-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab {
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    transform: rotate(-1deg);
+    box-shadow: 2px 2px 0px #000;
+}
+
+.tab:hover { transform: scale(1.1) rotate(1deg); }
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Resource Cards */
+.card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #d1c4ab;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover { transform: translateY(-5px); }
+
+.card h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.card p { font-size: 0.9rem; line-height: 1.4; color: #444; }
+
+.badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
