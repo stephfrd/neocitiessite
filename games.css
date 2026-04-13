@@ -1,0 +1,107 @@
+:root {
+    --neon-pink: #ff00ff;
+    --neon-blue: #00f3ff;
+    --glass-black: rgba(5, 5, 10, 0.92);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    
+    background-image: url('cyberpunk.jpeg'); 
+    
+    background-size: cover;       /* Stretches photo to fill the screen */
+    background-position: center;  /* Centers the image */
+    background-attachment: fixed; /* Photo stays still while you scroll */
+    background-repeat: no-repeat;
+    
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;      /* Centers the black rectangle */
+}
+
+.vertical-terminal {
+    /* Wider to fit 3 games: 800px is the sweet spot */
+    width: 800px; 
+    min-height: 100vh;
+    background: var(--glass-black);
+    backdrop-filter: blur(15px);
+    border-left: 2px solid var(--neon-pink);
+    border-right: 2px solid var(--neon-pink);
+    padding: 60px 40px;
+    box-sizing: border-box;
+    /* All text in the terminal is now Bright Pink */
+    color: var(--neon-pink);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.terminal-header {
+    text-align: center;
+    border-bottom: 1px solid var(--neon-blue);
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+}
+
+/* 3-Column Grid Logic */
+.game-grid {
+    display: grid;
+    /* Fits exactly 3 columns at 220px each */
+    grid-template-columns: repeat(3, 220px);
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Smaller Game Boxes */
+.flip-card {
+    width: 220px;
+    height: 220px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 1px solid var(--neon-pink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.card-front img {
+    width: 140px; /* Force a size */
+    height: 140px;
+    object-fit: contain; /* Keeps the logo from stretching */
+    filter: drop-shadow(0 0 8px var(--neon-pink));
+}
+
+.card-back {
+    background: #000; /* Solid black back for pink text to pop */
+    color: var(--neon-pink);
+    transform: rotateY(180deg);
+    padding: 15px;
+    text-align: center;
+    border: 1px solid var(--neon-blue);
+}
+
+.card-back h2 {
+    font-size: 1.1rem;
+    margin: 5px 0;
+    text-transform: uppercase;
+}
