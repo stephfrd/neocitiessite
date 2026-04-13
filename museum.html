@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinkArch ~</title>
+  <link rel="stylesheet" href="museumstyle.css">
+</head>
+<body>
+
+  <div id="splash">
+    <div id="sw">PinkArch</div>
+    <div id="ssub">pastel arch edition</div>
+    <div id="blog"></div>
+  </div>
+
+  <div id="desktop">
+
+    <div id="wallpaper"></div>
+
+    <svg id="arch-svg" width="480" height="540" viewBox="0 0 480 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M240 10 L475 530 H5 Z" fill="none" stroke="#c0437a" stroke-width="2.5"/>
+      <path d="M240 60 L445 510 H35 Z" fill="rgba(210,100,150,0.18)" stroke="#c0437a" stroke-width="2"/>
+      <path d="M240 165 L330 420 H150 Z" fill="rgba(255,240,248,0.85)"/>
+      <path d="M240 165 L330 420 H150 Z" fill="none" stroke="#c0437a" stroke-width="1.5"/>
+      <path d="M178 510 Q240 380 302 510" fill="none" stroke="#c0437a" stroke-width="2"/>
+    </svg>
+
+    <div class="dico" style="top:30px; left:16px" onclick="openW('wt')">
+      <div class="ico">🌸</div>
+      <div class="lbl">Terminal</div>
+    </div>
+
+    <div class="dico" style="top:112px; left:16px" onclick="openW('we')">
+      <div class="ico">💻</div>
+      <div class="lbl">Code Editor</div>
+    </div>
+
+    <div class="dico" style="top:194px; left:16px" onclick="openW('wg')">
+      <div class="ico">🎮</div>
+      <div class="lbl">Games</div>
+    </div>
+
+    <div class="dico" style="top:276px; left:16px" onclick="openW('wc')">
+      <div class="ico">📷</div>
+      <div class="lbl">Camera</div>
+    </div>
+
+    <div class="dico" style="top:358px; left:16px" onclick="openW('wnp')">
+      <div class="ico">📝</div>
+      <div class="lbl">Notepad</div>
+    </div>
+
+    <div class="dico" style="top:30px; left:96px" onclick="openBook('linux')">
+      <div class="ico book-ico" style="--bc:#5a9e6e">📗</div>
+      <div class="lbl">Linux</div>
+    </div>
+
+    <div class="dico" style="top:112px; left:96px" onclick="openBook('java')">
+      <div class="ico book-ico" style="--bc:#b06030">📙</div>
+      <div class="lbl">Java</div>
+    </div>
+
+    <div class="dico" style="top:194px; left:96px" onclick="openBook('cpp')">
+      <div class="ico book-ico" style="--bc:#3a7ab0">📘</div>
+      <div class="lbl">C++</div>
+    </div>
+
+    <div class="dico" style="top:276px; left:96px" onclick="openBook('python')">
+      <div class="ico book-ico" style="--bc:#5a7ab0">📔</div>
+      <div class="lbl">Python</div>
+    </div>
+
+    <div id="desk-folders"></div>
+
+    <div class="win" id="wt">
+      <div class="tbar" onmousedown="dragS(event,'wt')">
+        <button class="wb wb-c" onclick="closeW('wt')" title="Close"></button>
+        <button class="wb wb-m" onclick="maxW('wt')"  title="Maximize"></button>
+        <button class="wb wb-x" onclick="minW('wt')"  title="Minimize"></button>
+        <span class="wtitle">🌸 pinkTerm — bash</span>
+      </div>
+
+      <!-- output area -->
+      <div id="tb"></div>
+
+      <!-- input row -->
+      <div id="tir">
+        <span id="tpl">guest@pinkterm:~$&nbsp;</span>
+        <input id="tinp" autocomplete="off" spellcheck="false">
+      </div>
+
+      <div class="rzh" onmousedown="rzS(event,'wt')"></div>
+    </div>
+
+    <div class="win" id="we">
+      <div class="tbar" onmousedown="dragS(event,'we')">
+        <button class="wb wb-c" onclick="closeW('we')" title="Close"></button>
+        <button class="wb wb-m" onclick="maxW('we')"  title="Maximize"></button>
+        <button class="wb wb-x" onclick="minW('we')"  title="Minimize"></button>
+        <span class="wtitle">💻 pinkCode</span>
+      </div>
+
+      <div id="etabs">
+        <div class="etab active" onclick="switchLang('js')">script.js</div>
+        <div class="etab"        onclick="switchLang('cpp')">main.cpp</div>
+        <div class="etab"        onclick="switchLang('py')">main.py</div>
+      </div>
+
+      <div id="esplit">
+        <div id="elnum"></div>
+        <textarea id="ecode" spellcheck="false"></textarea>
+      </div>
+
+      <div id="efoot">
+        <button class="ebtn run" onclick="runCode()">▶ Run</button>
+        <button class="ebtn"     onclick="clearCode()">⌫ Clear</button>
+        <span id="ecur">Ln 1, Col 1</span>
+        <span id="elangbadge">JavaScript</span>
+      </div>
+
+      <div id="eout"></div>
+
+      <div class="rzh" onmousedown="rzS(event,'we')"></div>
+    </div>
+
+    <div class="win" id="wg">
+      <div class="tbar" onmousedown="dragS(event,'wg')">
+        <button class="wb wb-c" onclick="closeW('wg')" title="Close"></button>
+        <button class="wb wb-m" onclick="maxW('wg')"  title="Maximize"></button>
+        <button class="wb wb-x" onclick="minW('wg')"  title="Minimize"></button>
+        <span class="wtitle">🎮 pinkGames</span>
+      </div>
+
+      <div id="ghome">
+        <div class="gtitle">~ games ~</div>
+        <div class="gcard" onclick="showGame('snake')">
+          <h3>🐍 neon snake</h3>
+          <p>Arrow keys to move · space to pause</p>
+        </div>
+        <div class="gcard" onclick="showGame('typ')">
+          <h3>⌨️ typing racer</h3>
+          <p>Coding prompts · beat your WPM!</p>
+        </div>
+        <div class="gcard" onclick="showGame('mem')">
+          <h3>🧠 memory match</h3>
+          <p>Flip pastel cards · find all 8 pairs</p>
+        </div>
+      </div>
+
+      <div id="snkwrap">
+        <div id="snksc">score: 0 | best: 0</div>
+        <canvas id="snkcv" width="300" height="300"></canvas>
+        <div style="font-size:10px;color:var(--dim);margin-top:5px">
+          arrows = move · space = pause
+        </div>
+        <button class="smbtn" onclick="backGames()">← back</button>
+      </div>
+
+      <div id="typwrap">
+        <div id="typprompt"></div>
+        <input id="typinp" autocomplete="off" spellcheck="false" placeholder="start typing…">
+        <div id="typstats">wpm: 0 | accuracy: 100% | time: 0s</div>
+        <button class="smbtn" onclick="backGames()">← back</button>
+      </div>
+
+      <div id="memwrap">
+        <div id="memsc">pairs: 0 / 8</div>
+        <div id="memgrid"></div>
+        <button class="smbtn" onclick="initMem()">↻ restart</button>
+        <button class="smbtn" onclick="backGames()">← back</button>
+      </div>
+
+      <div class="rzh" onmousedown="rzS(event,'wg')"></div>
+    </div>
+
+    <div class="win" id="wc">
+      <div class="tbar" onmousedown="dragS(event,'wc')">
+        <button class="wb wb-c" onclick="closeW('wc');stopCam()" title="Close"></button>
+        <button class="wb wb-m" onclick="maxW('wc')"             title="Maximize"></button>
+        <button class="wb wb-x" onclick="minW('wc')"             title="Minimize"></button>
+        <span class="wtitle">📷 Camera</span>
+      </div>
+
+      <div id="cambody">
+
+        <!-- live video preview -->
+        <div id="campreview">
+          <video id="camvid" autoplay playsinline muted></video>
+          <canvas id="camcv"></canvas>
+          <div id="camoverlay"></div>
+          <div id="camno">
+            📷<br>
+            <span style="color:var(--pastel2)">click Start Camera below</span>
+          </div>
+        </div>
+
+        <!-- controls -->
+        <div id="camfoot">
+          <button class="smbtn" id="camstartbtn" onclick="startCam()">Start Camera</button>
+          <button id="camshoot" onclick="takePhoto()" title="Take Photo"></button>
+          <span id="camfiltlbl">filter:</span>
+          <select id="camfilt" onchange="applyFilter()">
+            <option value="none">none</option>
+            <option value="grayscale(100%)">grayscale</option>
+            <option value="sepia(80%)">sepia</option>
+            <option value="hue-rotate(300deg) saturate(1.6)">pink shift</option>
+            <option value="contrast(1.25) brightness(1.08)">vivid</option>
+            <option value="blur(1.5px) brightness(1.05)">dreamy</option>
+          </select>
+        </div>
+
+        <!-- photo thumbnails strip -->
+        <div id="camshots"></div>
+
+      </div>
+
+      <div class="rzh" onmousedown="rzS(event,'wc')"></div>
+    </div>
+
+
+    <div class="win" id="wnp">
+      <div class="tbar" onmousedown="dragS(event,'wnp')">
+        <button class="wb wb-c" onclick="closeW('wnp')" title="Close"></button>
+        <button class="wb wb-m" onclick="maxW('wnp')"   title="Maximize"></button>
+        <button class="wb wb-x" onclick="minW('wnp')"   title="Minimize"></button>
+        <span class="wtitle">📝 Notepad</span>
+      </div>
+      <div id="np-toolbar">
+        <button class="np-btn" onclick="npFormat('bold')"><b>B</b></button>
+        <button class="np-btn" onclick="npFormat('italic')"><i>I</i></button>
+        <button class="np-btn" onclick="npFormat('underline')"><u>U</u></button>
+        <div class="np-sep"></div>
+        <button class="np-btn" onclick="npSave()">💾 Save</button>
+        <button class="np-btn" onclick="npLoad()">📂 Load</button>
+        <button class="np-btn" onclick="npClear()">🗑 Clear</button>
+        <span id="np-wordcount">0 words</span>
+      </div>
+      <div id="np-body" contenteditable="true" spellcheck="true" data-placeholder="Start typing…"></div>
+      <div class="rzh" onmousedown="rzS(event,'wnp')"></div>
+    </div>
+
+
+    <div class="win" id="wbook">
+      <div class="tbar" onmousedown="dragS(event,'wbook')">
+        <button class="wb wb-c" onclick="closeW('wbook')" title="Close"></button>
+        <button class="wb wb-m" onclick="maxW('wbook')"   title="Maximize"></button>
+        <button class="wb wb-x" onclick="minW('wbook')"   title="Minimize"></button>
+        <span class="wtitle" id="book-title">📖 Guide</span>
+      </div>
+      <div id="book-inner">
+        <div id="book-sidebar">
+          <div id="book-chapters"></div>
+        </div>
+        <div id="book-content">
+          <div id="book-chapter-title"></div>
+          <div id="book-chapter-body"></div>
+        </div>
+      </div>
+      <div class="rzh" onmousedown="rzS(event,'wbook')"></div>
+    </div>
+
+
+  </div>
+
+  <div id="ctxmenu">
+    <div class="ctxitem" onclick="ctxNewFolder()">📁 New Folder</div>
+    <div class="ctxitem" onclick="openW('wt')">🌸 Open Terminal</div>
+    <div class="ctxitem" onclick="openW('we')">💻 Open Editor</div>
+    <div class="ctx-sep"></div>
+    <div class="ctxitem" onclick="hideCtx()">✕ Close Menu</div>
+  </div>
+
+  <div id="folderdlg">
+    <div id="folderdlg-box">
+      <div id="folderdlg-title">📁 New Folder</div>
+      <input id="folderdlg-inp" placeholder="folder name…" autocomplete="off" spellcheck="false">
+      <div id="folderdlg-btns">
+        <button onclick="confirmFolder()">Create</button>
+        <button onclick="cancelFolder()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="taskbar">
+    <span class="tlogo" onclick="openW('wt')">pT</span>
+    <button class="tbtn" onclick="toggleW('wt')">🌸 Terminal</button>
+    <button class="tbtn" onclick="toggleW('we')">💻 Editor</button>
+    <button class="tbtn" onclick="toggleW('wg')">🎮 Games</button>
+    <button class="tbtn" onclick="toggleW('wc')">📷 Camera</button>
+    <button class="tbtn" onclick="toggleW('wnp')">📝 Notepad</button>
+    <button class="tbtn" onclick="toggleW('wbook')">📖 Guides</button>
+    <div id="tbar-clk"></div>
+  </div>
+
+
+  <script src="museum.js"></script>
+</body>
+</html>
