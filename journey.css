@@ -1,0 +1,132 @@
+:root {
+    --teal: #008999;
+    --ocean: #0082ad;
+    --sky: #0097c8;
+    --electric: #0075c3;
+    --deep: #005bc2;
+    --glass: rgba(0, 5, 10, 0.9);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url('desktop.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Courier New', monospace;
+    color: var(--sky);
+    overflow: hidden; /* Prevents the whole page from scrolling vertically */
+}
+
+.fullscreen-terminal {
+    width: 100vw;
+    height: 100vh;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-header {
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* --- THE SCROLL LOGIC --- */
+
+.scroll-wrapper {
+    width: 100%;
+    flex-grow: 1; /* Fills the rest of the screen */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    overflow-y: hidden;
+    display: flex;
+    align-items: center; /* Centers the timeline vertically in the scroll area */
+    padding: 0 50px;
+}
+
+/* Custom Scrollbar to match your colors */
+.scroll-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+    background: var(--electric);
+    border-radius: 10px;
+}
+
+.horizontal-timeline {
+    display: flex;
+    flex-wrap: nowrap; /* Forces everything onto one line */
+    position: relative;
+    padding: 100px 0;
+    /* The line is as long as the content */
+    min-width: max-content; 
+}
+
+/* The Horizontal "Cable" */
+.horizontal-timeline::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--deep), var(--teal), var(--deep));
+    box-shadow: 0 0 15px var(--ocean);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.checkpoint {
+    position: relative;
+    width: 300px; /* Space between each point */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    flex-shrink: 0; /* Prevents boxes from squishing */
+}
+
+.point-dot {
+    width: 18px;
+    height: 18px;
+    background: var(--sky);
+    border-radius: 50%;
+    border: 3px solid #000;
+    box-shadow: 0 0 10px var(--sky);
+    z-index: 10;
+}
+
+.point-title {
+    position: absolute;
+    background: #000;
+    color: var(--teal);
+    border: 1px solid var(--ocean);
+    padding: 8px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.point-details {
+    position: absolute;
+    width: 220px;
+    background: rgba(0, 0, 0, 0.95);
+    color: #fff;
+    border: 1px dashed var(--sky);
+    padding: 12px;
+    font-size: 0.85rem;
+    display: none;
+    z-index: 20;
+    text-align: center;
+}
+
+/* Alternating Above and Below */
+
+.checkpoint:nth-child(odd) .point-title { bottom: 40px; }
+.checkpoint:nth-child(odd) .point-details { bottom: 100px; }
+
+.checkpoint:nth-child(even) .point-title { top: 40px; }
+.checkpoint:nth-child(even) .point-details { top: 100px; }
+
+.checkpoint.active .point-details {
+    display: block;
+}
