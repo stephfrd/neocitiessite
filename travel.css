@@ -1,0 +1,131 @@
+:root {
+    --aged-paper: #e0d0b0;
+    --ink: #2b1f15;
+    --red-pin: #b22222;
+    --wood: #3d2b1f;
+}
+
+body {
+    background-color: #1a1a1a;
+    margin: 0;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Dirty/Grungy texture overlay - keeps the 'old' feel */
+.travel-overlay {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    pointer-events: none;
+    opacity: 0.15;
+    z-index: 100;
+}
+
+.log-header {
+    text-align: center;
+    color: var(--aged-paper);
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--aged-paper);
+    width: fit-content;
+}
+
+/* The Wooden Frame */
+.map-board {
+    background: var(--wood);
+    padding: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    border-radius: 8px;
+    max-width: 1000px;
+    width: 95%;
+    border: 4px solid #2a1d15;
+}
+
+/* The Map Surface */
+.map-surface {
+    position: relative; 
+    width: 100%;
+    /* This ensures a nice widescreen map area */
+    aspect-ratio: 16 / 9; 
+    background-color: #8b7d6b; /* Fallback color */
+    background-image: url('your-map-image.jpg'); 
+    background-size: cover;
+    background-position: center;
+    border: 2px solid var(--ink);
+    /* The 'Torn Paper' edge effect */
+    outline: 12px solid var(--aged-paper);
+    outline-offset: -12px;
+    overflow: hidden; /* Keeps pins from floating outside the wood */
+}
+
+/* Pin Container Logic */
+.pin {
+    position: absolute; /* Needed for JS to place them at top/left % */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.pin:hover {
+    z-index: 50;
+    transform: scale(1.1) translateY(-5px);
+}
+
+/* The Stamp Photo */
+.stamp-photo {
+    width: 70px;
+    height: 70px;
+    background: white;
+    padding: 4px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: rotate(-3deg); /* Slight tilt for realism */
+}
+
+.stamp-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(40%) contrast(1.1);
+}
+
+/* The Pin Icon */
+.pin-marker {
+    font-size: 2rem;
+    margin-top: -20px; /* Pulls the pin 'onto' the bottom of the photo */
+    filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.5));
+    position: relative;
+    z-index: 10;
+}
+
+/* The City/Game Name Label */
+.city-label {
+    background: var(--aged-paper);
+    color: var(--ink);
+    font-weight: bold;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border: 1px solid #8b7d6b;
+    margin-top: 2px;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    white-space: nowrap;
+}
+
+/* Glitch effect for the header if you still want it */
+.glitch {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
