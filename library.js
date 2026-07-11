@@ -1,15 +1,11 @@
 const myBooks = [
     {
-        title: "Lolita",
-        author: "Vladimir Nabokov"
+        title: "Sound and Fury",
+        author: "William Faulkner"
     },
     {
-        title: "Carrie",
-        author: "Stephen King"
-    },
-    {
-        title: "Letters to Milena",
-        author: "Franz Kafka"
+      title:"The Theory of Everything",
+      author:"Stephen Hawking"
     }
 ];
 
