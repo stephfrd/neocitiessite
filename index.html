@@ -56,7 +56,7 @@ let bgStars = [];
 let t = 0;
 
 function resize() {
-  const rect = sky.getBoundingClientRect(); // 🔥 FIX
+  const rect = sky.getBoundingClientRect(); 
   W = rect.width;
   H = rect.height;
 
@@ -69,7 +69,7 @@ function resize() {
 function makeStars() {
   bgStars = [];
 
-  const count = Math.max(250, Math.floor(W * H / 1200)); // 🔥 GUARANTEED
+  const count = Math.max(250, Math.floor(W * H / 1200)); 
 
   for (let i = 0; i < count; i++) {
     bgStars.push({
@@ -155,7 +155,7 @@ const constellations = [
       { label: 'favourite movies',     href: 'movies.html'    },
       { label: 'my vibe',    href: 'aesthetic.html' }
     ],
-    page: 'aesthetic.html'
+    page: 'fav.html'
   },
   {
     name: 'Hobbies',
@@ -172,8 +172,8 @@ const constellations = [
     ],
     lines: [[0,1],[0,2],[0,3],[0,4],[0,5],[1,6]],
     items: [
-      { label: 'games i play',                  href: 'games.html'      },
-      {label: 'places i would like to visit',                  href: 'wishlist.html'      }
+      { label: 'games i play', href: 'games.html'      },
+      {label: 'places i would like to visit',   href: 'wishlist.html'      }
     ],
     page: 'hobbies.html'
   },
