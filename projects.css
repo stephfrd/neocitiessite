@@ -1,1 +1,45 @@
-
+.popup {
+  margin: 70px auto;
+  width: 500px;
+  position: relative;
+  z-index: 999;
+  background: transparent;
+}
+.overlay{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  visibility:hidden;
+  opacity:0;
+  background:transparent;
+  z-index: 999;
+}
+.overlay:target{
+  visibility: visible;
+  opacity: 1;
+}
+.window{
+  background: white;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 0px 0px 15px 15px;
+  padding:10px;
+  height: 400px;
+}
+.top{
+  background: pink;
+  border: 1px solid black;
+  height: 50px;
+  border-radius: 15px 15px 0px 0px;
+}
+button{
+  width:25px;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: black;
+  background: white;
+}
